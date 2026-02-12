@@ -1,0 +1,219 @@
+Oct 18 23:39:23 10.71.56.0 a321075 Connection from 10.71.56.0 port 31078 on 82.165.90.35 port 22 rdomain ""
+Oct 18 23:39:23 10.71.56.0 a321075 Accepted password for a321075 from 10.71.56.0 port 31078 ssh2
+Oct 18 23:39:23 10.71.56.0 a321075 Starting session: subsystem 'sftp' for a321075 from 10.71.56.0 port 31078 id 0
+Oct 18 23:39:23 10.71.56.0 a321075 session opened for local user a321075 from [10.71.56.0]
+Oct 18 23:40:27 10.71.56.0 a321075 Connection from 10.71.56.0 port 10524 on 82.165.90.35 port 22 rdomain ""
+Oct 18 23:40:27 10.71.56.0 a321075 Accepted password for a321075 from 10.71.56.0 port 10524 ssh2
+Oct 18 23:40:27 10.71.56.0 a321075 Connection from 10.71.56.0 port 10536 on 82.165.90.35 port 22 rdomain ""
+Oct 18 23:40:27 10.71.56.0 a321075 Accepted password for a321075 from 10.71.56.0 port 10536 ssh2
+Oct 18 23:40:28 10.71.56.0 a321075 Starting session: subsystem 'sftp' for a321075 from 10.71.56.0 port 10524 id 0
+Oct 18 23:40:28 10.71.56.0 a321075 session opened for local user a321075 from [10.71.56.0]
+Oct 18 23:40:28 10.71.56.0 a321075 Starting session: subsystem 'sftp' for a321075 from 10.71.56.0 port 10536 id 0
+Oct 18 23:40:28 10.71.56.0 a321075 session opened for local user a321075 from [10.71.56.0]
+Oct 18 23:40:28 10.71.56.0 a321075 open "/about.html" flags READ mode 0666
+Oct 18 23:40:28 10.71.56.0 a321075 close "/about.html" bytes read 4572 written 0
+Oct 18 23:40:28 10.71.56.0 a321075 [10.71.56.0|get|0|4572|0|0|0|2f61626f75742e68746d6c|]
+Oct 18 23:40:28 10.71.56.0 a321075 open "/.DS_Store" flags READ mode 0666
+Oct 18 23:40:28 10.71.56.0 a321075 open "/aileron.black.otf" flags READ mode 0666
+Oct 18 23:40:28 10.71.56.0 a321075 close "/.DS_Store" bytes read 10244 written 0
+Oct 18 23:40:28 10.71.56.0 a321075 [10.71.56.0|get|0|10244|0|0|0|2f2e44535f53746f7265|]
+Oct 18 23:40:28 10.71.56.0 a321075 close "/aileron.black.otf" bytes read 34608 written 0
+Oct 18 23:40:28 10.71.56.0 a321075 [10.71.56.0|get|0|34608|0|0|0|2f61696c65726f6e2e626c61636b2e6f7466|]
+Oct 18 23:40:28 10.71.56.0 a321075 open "/butterfly.html" flags READ mode 0666
+Oct 18 23:40:28 10.71.56.0 a321075 open "/circuit.html" flags READ mode 0666
+Oct 18 23:40:28 10.71.56.0 a321075 close "/butterfly.html" bytes read 3904 written 0
+Oct 18 23:40:28 10.71.56.0 a321075 [10.71.56.0|get|0|3904|0|0|0|2f627574746572666c792e68746d6c|]
+Oct 18 23:40:28 10.71.56.0 a321075 close "/circuit.html" bytes read 3722 written 0
+Oct 18 23:40:28 10.71.56.0 a321075 [10.71.56.0|get|0|3722|0|0|0|2f636972637569742e68746d6c|]
+Oct 18 23:40:28 10.71.56.0 a321075 open "/egg.html" flags READ mode 0666
+Oct 18 23:40:28 10.71.56.0 a321075 open "/contact.html" flags READ mode 0666
+Oct 18 23:40:28 10.71.56.0 a321075 close "/egg.html" bytes read 3504 written 0
+Oct 18 23:40:28 10.71.56.0 a321075 [10.71.56.0|get|0|3504|0|0|0|2f6567672e68746d6c|]
+Oct 18 23:40:28 10.71.56.0 a321075 close "/contact.html" bytes read 3277 written 0
+Oct 18 23:40:28 10.71.56.0 a321075 [10.71.56.0|get|0|3277|0|0|0|2f636f6e746163742e68746d6c|]
+Oct 18 23:40:28 10.71.56.0 a321075 open "/impressum.html" flags READ mode 0666
+Oct 18 23:40:28 10.71.56.0 a321075 close "/impressum.html" bytes read 5380 written 0
+Oct 18 23:40:28 10.71.56.0 a321075 [10.71.56.0|get|0|5380|0|0|0|2f696d7072657373756d2e68746d6c|]
+Oct 18 23:40:28 10.71.56.0 a321075 open "/index.html" flags READ mode 0666
+Oct 18 23:40:28 10.71.56.0 a321075 open "/nidus.html" flags READ mode 0666
+Oct 18 23:40:28 10.71.56.0 a321075 close "/index.html" bytes read 4241 written 0
+Oct 18 23:40:28 10.71.56.0 a321075 [10.71.56.0|get|0|4241|0|0|0|2f696e6465782e68746d6c|]
+Oct 18 23:40:28 10.71.56.0 a321075 close "/nidus.html" bytes read 5412 written 0
+Oct 18 23:40:28 10.71.56.0 a321075 [10.71.56.0|get|0|5412|0|0|0|2f6e696475732e68746d6c|]
+Oct 18 23:40:28 10.71.56.0 a321075 open "/privacy.html" flags READ mode 0666
+Oct 18 23:40:29 10.71.56.0 a321075 open "/projects.html" flags READ mode 0666
+Oct 18 23:40:29 10.71.56.0 a321075 close "/projects.html" bytes read 3509 written 0
+Oct 18 23:40:29 10.71.56.0 a321075 [10.71.56.0|get|0|3509|0|0|0|2f70726f6a656374732e68746d6c|]
+Oct 18 23:40:29 10.71.56.0 a321075 close "/privacy.html" bytes read 6774 written 0
+Oct 18 23:40:29 10.71.56.0 a321075 [10.71.56.0|get|1|6774|0|0|0|2f707269766163792e68746d6c|]
+Oct 18 23:40:29 10.71.56.0 a321075 open "/sanc-blu.html" flags READ mode 0666
+Oct 18 23:40:29 10.71.56.0 a321075 open "/terrapath.html" flags READ mode 0666
+Oct 18 23:40:29 10.71.56.0 a321075 close "/sanc-blu.html" bytes read 3997 written 0
+Oct 18 23:40:29 10.71.56.0 a321075 [10.71.56.0|get|0|3997|0|0|0|2f73616e632d626c752e68746d6c|]
+Oct 18 23:40:29 10.71.56.0 a321075 close "/terrapath.html" bytes read 4296 written 0
+Oct 18 23:40:29 10.71.56.0 a321075 [10.71.56.0|get|0|4296|0|0|0|2f7465727261706174682e68746d6c|]
+Oct 18 23:40:29 10.71.56.0 a321075 open "/css/.DS_Store" flags READ mode 0666
+Oct 18 23:40:29 10.71.56.0 a321075 close "/css/.DS_Store" bytes read 6148 written 0
+Oct 18 23:40:29 10.71.56.0 a321075 [10.71.56.0|get|0|6148|0|0|0|2f6373732f2e44535f53746f7265|]
+Oct 18 23:40:29 10.71.56.0 a321075 open "/css/style.css" flags READ mode 0666
+Oct 18 23:40:29 10.71.56.0 a321075 open "/fonts/PPModelMono-Medium.otf" flags READ mode 0666
+Oct 18 23:40:29 10.71.56.0 a321075 close "/css/style.css" bytes read 15542 written 0
+Oct 18 23:40:29 10.71.56.0 a321075 [10.71.56.0|get|0|15542|0|0|0|2f6373732f7374796c652e637373|]
+Oct 18 23:40:29 10.71.56.0 a321075 close "/fonts/PPModelMono-Medium.otf" bytes read 59544 written 0
+Oct 18 23:40:29 10.71.56.0 a321075 [10.71.56.0|get|0|59544|0|0|0|2f666f6e74732f50504d6f64656c4d6f6e6f2d4d656469756d2e6f7466|]
+Oct 18 23:40:29 10.71.56.0 a321075 open "/fonts/Blacker-Sans-Extrabold-trial.ttf" flags READ mode 0666
+Oct 18 23:40:29 10.71.56.0 a321075 open "/fonts/Blacker-Sans-Extralight-Italic-trial.ttf" flags READ mode 0666
+Oct 18 23:40:29 10.71.56.0 a321075 close "/fonts/Blacker-Sans-Extrabold-trial.ttf" bytes read 1233920 written 0
+Oct 18 23:40:29 10.71.56.0 a321075 [10.71.56.0|get|0|1233920|0|0|0|2f666f6e74732f426c61636b65722d53616e732d4578747261626f6c642d747269616c2e747466|]
+Oct 18 23:40:29 10.71.56.0 a321075 sent status No such file
+Oct 18 23:40:29 10.71.56.0 a321075 open "/fonts/NeueMachina-InktrapRegular.otf" flags READ mode 0666
+Oct 18 23:40:30 10.71.56.0 a321075 close "/fonts/Blacker-Sans-Extralight-Italic-trial.ttf" bytes read 879476 written 0
+Oct 18 23:40:30 10.71.56.0 a321075 [10.71.56.0|get|1|879476|0|0|0|2f666f6e74732f426c61636b65722d53616e732d45787472616c696768742d4974616c69632d747269616c2e747466|]
+Oct 18 23:40:30 10.71.56.0 a321075 close "/fonts/NeueMachina-InktrapRegular.otf" bytes read 120984 written 0
+Oct 18 23:40:30 10.71.56.0 a321075 [10.71.56.0|get|1|120984|0|0|0|2f666f6e74732f4e6575654d616368696e612d496e6b74726170526567756c61722e6f7466|]
+Oct 18 23:40:30 10.71.56.0 a321075 open "/fonts/PPModelMono-Light.otf" flags READ mode 0666
+Oct 18 23:40:30 10.71.56.0 a321075 open "/fonts/PPModelSans-Light.otf" flags READ mode 0666
+Oct 18 23:40:30 10.71.56.0 a321075 close "/fonts/PPModelMono-Light.otf" bytes read 58740 written 0
+Oct 18 23:40:30 10.71.56.0 a321075 [10.71.56.0|get|0|58740|0|0|0|2f666f6e74732f50504d6f64656c4d6f6e6f2d4c696768742e6f7466|]
+Oct 18 23:40:30 10.71.56.0 a321075 close "/fonts/PPModelSans-Light.otf" bytes read 95160 written 0
+Oct 18 23:40:30 10.71.56.0 a321075 [10.71.56.0|get|0|95160|0|0|0|2f666f6e74732f50504d6f64656c53616e732d4c696768742e6f7466|]
+Oct 18 23:40:30 10.71.56.0 a321075 open "/fonts/.DS_Store" flags READ mode 0666
+Oct 18 23:40:30 10.71.56.0 a321075 open "/fonts/digital-deco/Digital-Deco.ttf" flags READ mode 0666
+Oct 18 23:40:30 10.71.56.0 a321075 close "/fonts/.DS_Store" bytes read 8196 written 0
+Oct 18 23:40:30 10.71.56.0 a321075 [10.71.56.0|get|0|8196|0|0|0|2f666f6e74732f2e44535f53746f7265|]
+Oct 18 23:40:30 10.71.56.0 a321075 close "/fonts/digital-deco/Digital-Deco.ttf" bytes read 36028 written 0
+Oct 18 23:40:30 10.71.56.0 a321075 [10.71.56.0|get|0|36028|0|0|0|2f666f6e74732f6469676974616c2d6465636f2f4469676974616c2d4465636f2e747466|]
+Oct 18 23:40:30 10.71.56.0 a321075 open "/fonts/digital-deco/.DS_Store" flags READ mode 0666
+Oct 18 23:40:30 10.71.56.0 a321075 open "/fonts/digital-deco/Digital-Deco.otf" flags READ mode 0666
+Oct 18 23:40:30 10.71.56.0 a321075 close "/fonts/digital-deco/.DS_Store" bytes read 6148 written 0
+Oct 18 23:40:30 10.71.56.0 a321075 [10.71.56.0|get|0|6148|0|0|0|2f666f6e74732f6469676974616c2d6465636f2f2e44535f53746f7265|]
+Oct 18 23:40:30 10.71.56.0 a321075 close "/fonts/digital-deco/Digital-Deco.otf" bytes read 17252 written 0
+Oct 18 23:40:30 10.71.56.0 a321075 [10.71.56.0|get|0|17252|0|0|0|2f666f6e74732f6469676974616c2d6465636f2f4469676974616c2d4465636f2e6f7466|]
+Oct 18 23:40:30 10.71.56.0 a321075 open "/fonts/avara/Avara-Black.eot" flags READ mode 0666
+Oct 18 23:40:30 10.71.56.0 a321075 close "/fonts/avara/Avara-Black.eot" bytes read 13753 written 0
+Oct 18 23:40:30 10.71.56.0 a321075 [10.71.56.0|get|0|13753|0|0|0|2f666f6e74732f61766172612f41766172612d426c61636b2e656f74|]
+Oct 18 23:40:30 10.71.56.0 a321075 open "/fonts/avara/Avara-Black.ttf" flags READ mode 0666
+Oct 18 23:40:30 10.71.56.0 a321075 open "/fonts/avara/Avara-Black.woff" flags READ mode 0666
+Oct 18 23:40:30 10.71.56.0 a321075 close "/fonts/avara/Avara-Black.ttf" bytes read 39280 written 0
+Oct 18 23:40:30 10.71.56.0 a321075 [10.71.56.0|get|0|39280|0|0|0|2f666f6e74732f61766172612f41766172612d426c61636b2e747466|]
+Oct 18 23:40:30 10.71.56.0 a321075 close "/fonts/avara/Avara-Black.woff" bytes read 13280 written 0
+Oct 18 23:40:30 10.71.56.0 a321075 [10.71.56.0|get|0|13280|0|0|0|2f666f6e74732f61766172612f41766172612d426c61636b2e776f6666|]
+Oct 18 23:40:30 10.71.56.0 a321075 open "/fonts/avara/Avara-Black.woff2" flags READ mode 0666
+Oct 18 23:40:31 10.71.56.0 a321075 open "/fonts/syne/SyneMono-Regular.woff" flags READ mode 0666
+Oct 18 23:40:31 10.71.56.0 a321075 close "/fonts/avara/Avara-Black.woff2" bytes read 12124 written 0
+Oct 18 23:40:31 10.71.56.0 a321075 [10.71.56.0|get|1|12124|0|0|0|2f666f6e74732f61766172612f41766172612d426c61636b2e776f666632|]
+Oct 18 23:40:31 10.71.56.0 a321075 close "/fonts/syne/SyneMono-Regular.woff" bytes read 33692 written 0
+Oct 18 23:40:31 10.71.56.0 a321075 [10.71.56.0|get|0|33692|0|0|0|2f666f6e74732f73796e652f53796e654d6f6e6f2d526567756c61722e776f6666|]
+Oct 18 23:40:31 10.71.56.0 a321075 open "/fonts/prospectus/ProspectusProLDEMO-LightItalic.woff2" flags READ mode 0666
+Oct 18 23:40:31 10.71.56.0 a321075 open "/fonts/syne/SyneMono-Regular.woff2" flags READ mode 0666
+Oct 18 23:40:31 10.71.56.0 a321075 close "/fonts/prospectus/ProspectusProLDEMO-LightItalic.woff2" bytes read 30404 written 0
+Oct 18 23:40:31 10.71.56.0 a321075 [10.71.56.0|get|0|30404|0|0|0|2f666f6e74732f70726f737065637475732f50726f7370656374757350726f4c44454d4f2d4c696768744974616c69632e776f666632|]
+Oct 18 23:40:31 10.71.56.0 a321075 close "/fonts/syne/SyneMono-Regular.woff2" bytes read 27224 written 0
+Oct 18 23:40:31 10.71.56.0 a321075 [10.71.56.0|get|0|27224|0|0|0|2f666f6e74732f73796e652f53796e654d6f6e6f2d526567756c61722e776f666632|]
+Oct 18 23:40:31 10.71.56.0 a321075 open "/fonts/prospectus/.DS_Store" flags READ mode 0666
+Oct 18 23:40:31 10.71.56.0 a321075 close "/fonts/prospectus/.DS_Store" bytes read 6148 written 0
+Oct 18 23:40:31 10.71.56.0 a321075 [10.71.56.0|get|0|6148|0|0|0|2f666f6e74732f70726f737065637475732f2e44535f53746f7265|]
+Oct 18 23:40:31 10.71.56.0 a321075 open "/fonts/prospectus/ProspectusProLDEMO-LightItalic.woff" flags READ mode 0666
+Oct 18 23:40:31 10.71.56.0 a321075 open "/icons/bluesky-icon.png" flags READ mode 0666
+Oct 18 23:40:31 10.71.56.0 a321075 close "/fonts/prospectus/ProspectusProLDEMO-LightItalic.woff" bytes read 39572 written 0
+Oct 18 23:40:31 10.71.56.0 a321075 [10.71.56.0|get|0|39572|0|0|0|2f666f6e74732f70726f737065637475732f50726f7370656374757350726f4c44454d4f2d4c696768744974616c69632e776f6666|]
+Oct 18 23:40:31 10.71.56.0 a321075 close "/icons/bluesky-icon.png" bytes read 15218 written 0
+Oct 18 23:40:31 10.71.56.0 a321075 [10.71.56.0|get|0|15218|0|0|0|2f69636f6e732f626c7565736b792d69636f6e2e706e67|]
+Oct 18 23:40:31 10.71.56.0 a321075 open "/icons/instagram-white-icon.png" flags READ mode 0666
+Oct 18 23:40:31 10.71.56.0 a321075 open "/images/nidus-snap.jpg" flags READ mode 0666
+Oct 18 23:40:31 10.71.56.0 a321075 close "/icons/instagram-white-icon.png" bytes read 11094 written 0
+Oct 18 23:40:31 10.71.56.0 a321075 [10.71.56.0|get|0|11094|0|0|0|2f69636f6e732f696e7374616772616d2d77686974652d69636f6e2e706e67|]
+Oct 18 23:40:31 10.71.56.0 a321075 close "/images/nidus-snap.jpg" bytes read 320149 written 0
+Oct 18 23:40:31 10.71.56.0 a321075 [10.71.56.0|get|0|320149|0|0|0|2f696d616765732f6e696475732d736e61702e6a7067|]
+Oct 18 23:40:31 10.71.56.0 a321075 open "/images/arm.gif" flags READ mode 0666
+Oct 18 23:40:31 10.71.56.0 a321075 close "/images/arm.gif" bytes read 224725 written 0
+Oct 18 23:40:31 10.71.56.0 a321075 [10.71.56.0|get|0|224725|0|0|0|2f696d616765732f61726d2e676966|]
+Oct 18 23:40:31 10.71.56.0 a321075 open "/images/Sanctuary_Blue.jpg" flags READ mode 0666
+Oct 18 23:40:31 10.71.56.0 a321075 open "/images/sb-opt.gif" flags READ mode 0666
+Oct 18 23:40:32 10.71.56.0 a321075 close "/images/Sanctuary_Blue.jpg" bytes read 247888 written 0
+Oct 18 23:40:32 10.71.56.0 a321075 [10.71.56.0|get|1|247888|0|0|0|2f696d616765732f53616e6374756172795f426c75652e6a7067|]
+Oct 18 23:40:32 10.71.56.0 a321075 close "/images/sb-opt.gif" bytes read 428986 written 0
+Oct 18 23:40:32 10.71.56.0 a321075 [10.71.56.0|get|1|428986|0|0|0|2f696d616765732f73622d6f70742e676966|]
+Oct 18 23:40:32 10.71.56.0 a321075 open "/images/nidus-opt.gif" flags READ mode 0666
+Oct 18 23:40:32 10.71.56.0 a321075 open "/images/flower-opt.gif" flags READ mode 0666
+Oct 18 23:40:32 10.71.56.0 a321075 close "/images/nidus-opt.gif" bytes read 545836 written 0
+Oct 18 23:40:32 10.71.56.0 a321075 [10.71.56.0|get|0|545836|0|0|0|2f696d616765732f6e696475732d6f70742e676966|]
+Oct 18 23:40:32 10.71.56.0 a321075 close "/images/flower-opt.gif" bytes read 252052 written 0
+Oct 18 23:40:32 10.71.56.0 a321075 [10.71.56.0|get|0|252052|0|0|0|2f696d616765732f666c6f7765722d6f70742e676966|]
+Oct 18 23:40:32 10.71.56.0 a321075 open "/images/.DS_Store" flags READ mode 0666
+Oct 18 23:40:32 10.71.56.0 a321075 open "/images/terrapath.jpg" flags READ mode 0666
+Oct 18 23:40:32 10.71.56.0 a321075 close "/images/.DS_Store" bytes read 6148 written 0
+Oct 18 23:40:32 10.71.56.0 a321075 [10.71.56.0|get|0|6148|0|0|0|2f696d616765732f2e44535f53746f7265|]
+Oct 18 23:40:32 10.71.56.0 a321075 close "/images/terrapath.jpg" bytes read 376473 written 0
+Oct 18 23:40:32 10.71.56.0 a321075 [10.71.56.0|get|0|376473|0|0|0|2f696d616765732f7465727261706174682e6a7067|]
+Oct 18 23:40:32 10.71.56.0 a321075 open "/images/egg-opt.gif" flags READ mode 0666
+Oct 18 23:40:32 10.71.56.0 a321075 close "/images/egg-opt.gif" bytes read 557348 written 0
+Oct 18 23:40:32 10.71.56.0 a321075 [10.71.56.0|get|0|557348|0|0|0|2f696d616765732f6567672d6f70742e676966|]
+Oct 18 23:40:32 10.71.56.0 a321075 open "/images/spaceholder/2bab-2.jpg" flags READ mode 0666
+Oct 18 23:40:32 10.71.56.0 a321075 open "/images/spaceholder/2bab-1.jpg" flags READ mode 0666
+Oct 18 23:40:32 10.71.56.0 a321075 close "/images/spaceholder/2bab-2.jpg" bytes read 524404 written 0
+Oct 18 23:40:32 10.71.56.0 a321075 [10.71.56.0|get|0|524404|0|0|0|2f696d616765732f7370616365686f6c6465722f326261622d322e6a7067|]
+Oct 18 23:40:32 10.71.56.0 a321075 close "/images/spaceholder/2bab-1.jpg" bytes read 346097 written 0
+Oct 18 23:40:32 10.71.56.0 a321075 [10.71.56.0|get|0|346097|0|0|0|2f696d616765732f7370616365686f6c6465722f326261622d312e6a7067|]
+Oct 18 23:40:32 10.71.56.0 a321075 open "/images/spaceholder/circ1.jpg" flags READ mode 0666
+Oct 18 23:40:32 10.71.56.0 a321075 open "/images/spaceholder/circ2.jpg" flags READ mode 0666
+Oct 18 23:40:33 10.71.56.0 a321075 close "/images/spaceholder/circ1.jpg" bytes read 148268 written 0
+Oct 18 23:40:33 10.71.56.0 a321075 [10.71.56.0|get|1|148268|0|0|0|2f696d616765732f7370616365686f6c6465722f63697263312e6a7067|]
+Oct 18 23:40:33 10.71.56.0 a321075 close "/images/spaceholder/circ2.jpg" bytes read 202109 written 0
+Oct 18 23:40:33 10.71.56.0 a321075 [10.71.56.0|get|1|202109|0|0|0|2f696d616765732f7370616365686f6c6465722f63697263322e6a7067|]
+Oct 18 23:40:33 10.71.56.0 a321075 open "/images/spaceholder/.DS_Store" flags READ mode 0666
+Oct 18 23:40:33 10.71.56.0 a321075 open "/logs/access.log.42.3.gz" flags READ mode 0666
+Oct 18 23:40:33 10.71.56.0 a321075 close "/images/spaceholder/.DS_Store" bytes read 6148 written 0
+Oct 18 23:40:33 10.71.56.0 a321075 [10.71.56.0|get|0|6148|0|0|0|2f696d616765732f7370616365686f6c6465722f2e44535f53746f7265|]
+Oct 18 23:40:33 10.71.56.0 a321075 close "/logs/access.log.42.3.gz" bytes read 1595 written 0
+Oct 18 23:40:33 10.71.56.0 a321075 [10.71.56.0|get|0|1595|0|0|0|2f6c6f67732f6163636573732e6c6f672e34322e332e677a|]
+Oct 18 23:40:33 10.71.56.0 a321075 open "/logs/access.log.40.gz" flags READ mode 0666
+Oct 18 23:40:33 10.71.56.0 a321075 open "/logs/access.log.34.gz" flags READ mode 0666
+Oct 18 23:40:33 10.71.56.0 a321075 close "/logs/access.log.40.gz" bytes read 10335 written 0
+Oct 18 23:40:33 10.71.56.0 a321075 [10.71.56.0|get|0|10335|0|0|0|2f6c6f67732f6163636573732e6c6f672e34302e677a|]
+Oct 18 23:40:33 10.71.56.0 a321075 close "/logs/access.log.34.gz" bytes read 9741 written 0
+Oct 18 23:40:33 10.71.56.0 a321075 [10.71.56.0|get|0|9741|0|0|0|2f6c6f67732f6163636573732e6c6f672e33342e677a|]
+Oct 18 23:40:33 10.71.56.0 a321075 open "/logs/access.log.42.5.gz" flags READ mode 0666
+Oct 18 23:40:33 10.71.56.0 a321075 close "/logs/access.log.42.5.gz" bytes read 1741 written 0
+Oct 18 23:40:33 10.71.56.0 a321075 [10.71.56.0|get|0|1741|0|0|0|2f6c6f67732f6163636573732e6c6f672e34322e352e677a|]
+Oct 18 23:40:33 10.71.56.0 a321075 open "/logs/access.log.42.2.gz" flags READ mode 0666
+Oct 18 23:40:33 10.71.56.0 a321075 open "/logs/access.log.42.1.gz" flags READ mode 0666
+Oct 18 23:40:33 10.71.56.0 a321075 close "/logs/access.log.42.2.gz" bytes read 1706 written 0
+Oct 18 23:40:33 10.71.56.0 a321075 [10.71.56.0|get|0|1706|0|0|0|2f6c6f67732f6163636573732e6c6f672e34322e322e677a|]
+Oct 18 23:40:33 10.71.56.0 a321075 close "/logs/access.log.42.1.gz" bytes read 1497 written 0
+Oct 18 23:40:33 10.71.56.0 a321075 [10.71.56.0|get|0|1497|0|0|0|2f6c6f67732f6163636573732e6c6f672e34322e312e677a|]
+Oct 18 23:40:33 10.71.56.0 a321075 open "/logs/access.log.37.gz" flags READ mode 0666
+Oct 18 23:40:33 10.71.56.0 a321075 open "/logs/access.log.42.6" flags READ mode 0666
+Oct 18 23:40:33 10.71.56.0 a321075 close "/logs/access.log.37.gz" bytes read 8643 written 0
+Oct 18 23:40:33 10.71.56.0 a321075 [10.71.56.0|get|0|8643|0|0|0|2f6c6f67732f6163636573732e6c6f672e33372e677a|]
+Oct 18 23:40:33 10.71.56.0 a321075 close "/logs/access.log.42.6" bytes read 18933 written 0
+Oct 18 23:40:33 10.71.56.0 a321075 [10.71.56.0|get|0|18933|0|0|0|2f6c6f67732f6163636573732e6c6f672e34322e36|]
+Oct 18 23:40:33 10.71.56.0 a321075 open "/logs/access.log.39.gz" flags READ mode 0666
+Oct 18 23:40:33 10.71.56.0 a321075 open "/logs/access.log.42.4.gz" flags READ mode 0666
+Oct 18 23:40:33 10.71.56.0 a321075 close "/logs/access.log.42.4.gz" bytes read 2190 written 0
+Oct 18 23:40:33 10.71.56.0 a321075 [10.71.56.0|get|0|2190|0|0|0|2f6c6f67732f6163636573732e6c6f672e34322e342e677a|]
+Oct 18 23:40:33 10.71.56.0 a321075 close "/logs/access.log.39.gz" bytes read 8743 written 0
+Oct 18 23:40:33 10.71.56.0 a321075 [10.71.56.0|get|0|8743|0|0|0|2f6c6f67732f6163636573732e6c6f672e33392e677a|]
+Oct 18 23:40:34 10.71.56.0 a321075 open "/logs/access.log.41.5.gz" flags READ mode 0666
+Oct 18 23:40:34 10.71.56.0 a321075 open "/logs/access.log.41.3.gz" flags READ mode 0666
+Oct 18 23:40:34 10.71.56.0 a321075 close "/logs/access.log.41.5.gz" bytes read 1544 written 0
+Oct 18 23:40:34 10.71.56.0 a321075 [10.71.56.0|get|0|1544|0|0|0|2f6c6f67732f6163636573732e6c6f672e34312e352e677a|]
+Oct 18 23:40:34 10.71.56.0 a321075 close "/logs/access.log.41.3.gz" bytes read 1243 written 0
+Oct 18 23:40:34 10.71.56.0 a321075 [10.71.56.0|get|0|1243|0|0|0|2f6c6f67732f6163636573732e6c6f672e34312e332e677a|]
+Oct 18 23:40:34 10.71.56.0 a321075 open "/logs/access.log.36.gz" flags READ mode 0666
+Oct 18 23:40:34 10.71.56.0 a321075 close "/logs/access.log.36.gz" bytes read 6462 written 0
+Oct 18 23:40:34 10.71.56.0 a321075 [10.71.56.0|get|0|6462|0|0|0|2f6c6f67732f6163636573732e6c6f672e33362e677a|]
+Oct 18 23:40:34 10.71.56.0 a321075 open "/logs/access.log.35.gz" flags READ mode 0666
+Oct 18 23:40:34 10.71.56.0 a321075 open "/logs/access.log.41.7.gz" flags READ mode 0666
+Oct 18 23:40:34 10.71.56.0 a321075 close "/logs/access.log.35.gz" bytes read 7078 written 0
+Oct 18 23:40:34 10.71.56.0 a321075 [10.71.56.0|get|0|7078|0|0|0|2f6c6f67732f6163636573732e6c6f672e33352e677a|]
+Oct 18 23:40:34 10.71.56.0 a321075 close "/logs/access.log.41.7.gz" bytes read 2061 written 0
+Oct 18 23:40:34 10.71.56.0 a321075 [10.71.56.0|get|0|2061|0|0|0|2f6c6f67732f6163636573732e6c6f672e34312e372e677a|]
+Oct 18 23:40:34 10.71.56.0 a321075 open "/logs/access.log.38.gz" flags READ mode 0666
+Oct 18 23:40:34 10.71.56.0 a321075 open "/logs/traffic.db" flags READ mode 0666
+Oct 18 23:40:34 10.71.56.0 a321075 close "/logs/access.log.38.gz" bytes read 7271 written 0
+Oct 18 23:40:34 10.71.56.0 a321075 [10.71.56.0|get|0|7271|0|0|0|2f6c6f67732f6163636573732e6c6f672e33382e677a|]
+Oct 18 23:40:34 10.71.56.0 a321075 close "/logs/traffic.db" bytes read 24576 written 0
+Oct 18 23:40:34 10.71.56.0 a321075 [10.71.56.0|get|0|24576|0|0|0|2f6c6f67732f747261666669632e6462|]
+Oct 18 23:40:34 10.71.56.0 a321075 open "/logs/sftp.log" flags READ mode 0666
+Oct 18 23:40:34 10.71.56.0 a321075 open "/logs/access.log.41.6.gz" flags READ mode 0666
