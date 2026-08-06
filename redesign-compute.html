@@ -1,0 +1,1132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Page Redesign for a Cloud Computing Service</title>
+  <style>
+    /* ——— RESET & BASE ——— */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg: #EDF0F9;
+      --bg-left: #EDF0F9;
+      --text-h: #090C18;
+      --text-body: #2C2F3B;
+      --text-muted: #6A6E7C;
+      --accent: #3B68F5;
+      --dark-bg: #001533;
+      --dark-bg2: #00214A;
+      --border: #D2D8EA;
+      --white: #ffffff;
+      --tag-border: #C4CBDC;
+      --blockquote-l: #C4C9DB;
+
+      --nav-h: 48px;
+      --font-mono: 'Overpass Mono', monospace;
+      --font-sans: 'Overpass', system-ui, -apple-system, sans-serif;
+
+      /* layout offsets (designed for 1440px) */
+      --sidebar-l: 97px;
+      --sidebar-w: 145px;
+      --content-l: 280px;
+      /* sidebar-l + sidebar-w + ~38px gap */
+      --content-max: 620px;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      background: var(--bg);
+      color: var(--text-body);
+      font-size: 16px;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* left-column tint via fixed pseudo-element */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      width: var(--content-l);
+      background: var(--bg-left);
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    @font-face {
+      font-family: 'Overpass';
+      src: url('/fonts/Overpass-Regular.ttf') format('truetype');
+      font-weight: 400;
+      font-style: normal;
+    }
+
+    @font-face {
+      font-family: 'Overpass Mono';
+      src: url('/fonts/OverpassMono-Regular.ttf') format('truetype');
+      font-weight: 500;
+      font-style: normal;
+    }
+
+    /* ——— MOBILE DISCLAIMER ——— */
+    .mobile-disclaimer {
+      display: none;
+    }
+
+    @media (max-width: 768px) {
+      .mobile-disclaimer {
+        display: block;
+        background: #FFF3E0;
+        color: #7A4A00;
+        font-family: var(--font-sans);
+        font-size: 15px;
+        line-height: 1.6;
+        padding: 20px 24px;
+        margin: calc(var(--nav-h) + 16px) 16px 0;
+        border-radius: 10px;
+        border: 1px solid #FFCC80;
+      }
+    }
+
+    /* ——— NAV ——— */
+    .site-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: var(--nav-h);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 40px;
+      background: rgba(227, 231, 243, 0.7);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      z-index: 200;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.3s;
+    }
+
+    .site-nav.scrolled {
+      border-bottom-color: var(--border);
+    }
+
+    .nav-link {
+      font-size: 13px;
+      color: var(--accent);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      white-space: nowrap;
+    }
+
+    .nav-link:hover {
+      text-decoration: underline;
+    }
+
+    .nav-title {
+      font-family: var(--font-sans);
+      font-size: 12px;
+      font-weight: 400;
+      color: var(--text-h);
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      max-width: 45%;
+      text-align: center;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      pointer-events: none;
+    }
+
+    .nav-title.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ——— PAGE WRAPPER ——— */
+    .page {
+      position: relative;
+      z-index: 1;
+      max-width: 1440px;
+      margin: 0 auto;
+    }
+
+    /* ——— HERO ——— */
+    .hero {
+      padding-top: calc(var(--nav-h) + 56px);
+      padding-bottom: 72px;
+      padding-left: var(--content-l);
+      padding-right: 80px;
+    }
+
+    .cs-label {
+      font-size: 12px;
+      color: var(--accent);
+      margin-bottom: 10px;
+      letter-spacing: 0.01em;
+    }
+
+    h1.page-title {
+      font-family: var(--font-mono);
+      font-size: clamp(18px, 2.4vw, 32px);
+      font-weight: 700;
+      color: var(--text-h);
+      line-height: 1.25;
+      margin-bottom: 22px;
+      max-width: var(--content-max);
+    }
+
+    .tag-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 10px;
+    }
+
+    .tag {
+      border: 1px solid var(--tag-border);
+      border-radius: 100px;
+      padding: 3px 12px;
+      font-size: 12px;
+      color: var(--text-h);
+      background: transparent;
+    }
+
+    .tools-label {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .tag--tool {
+      border-color: rgba(59, 104, 245, 0.35);
+      background: rgba(59, 104, 245, 0.07);
+      color: var(--accent);
+    }
+
+    .hero-media {
+      margin-top: 28px;
+      border-radius: 14px;
+      overflow: hidden;
+      background: var(--dark-bg);
+      max-width: var(--content-max);
+      line-height: 0;
+    }
+
+    .hero-media img,
+    .hero-media video {
+      width: 100%;
+      display: block;
+      border-radius: 14px;
+    }
+
+    /* ——— INTRO KV ——— */
+    .intro-kv {
+      padding-left: var(--content-l);
+      padding-right: 80px;
+      padding-top: 16px;
+      padding-bottom: 72px;
+    }
+
+    .kv-item {
+      display: grid;
+      grid-template-columns: 100px 1fr;
+      gap: 20px;
+      max-width: var(--content-max);
+      padding: 28px 0;
+    }
+
+    .kv-key {
+      font-size: 12.5px;
+      color: var(--accent);
+      padding-top: 3px;
+      line-height: 1.4;
+    }
+
+    .kv-val {
+      font-size: 15px;
+      line-height: 1.7;
+      color: var(--text-body);
+    }
+
+    /* ——— CONTENT + SIDEBAR ——— */
+    .sections-wrap {
+      display: flex;
+      align-items: flex-start;
+      padding-left: var(--sidebar-l);
+      padding-right: 80px;
+      gap: 0;
+    }
+
+    .sections-wrap--first {
+      border-top: 1px solid var(--border);
+    }
+
+    .sidebar {
+      width: var(--sidebar-w);
+      min-width: var(--sidebar-w);
+      position: sticky;
+      top: calc(var(--nav-h) + 40px);
+      padding-right: 20px;
+      padding-top: 72px;
+    }
+
+    .index-nav {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .index-link {
+      display: block;
+      font-size: 12.5px;
+      color: var(--text-muted);
+      text-decoration: none;
+      padding: 3px 0;
+      transition: color 0.2s;
+      line-height: 1.4;
+    }
+
+    .index-link:hover {
+      color: var(--accent);
+    }
+
+    .index-link.active {
+      color: var(--accent);
+    }
+
+    /* ——— CONTENT SECTIONS ——— */
+    .sections-content {
+      max-width: var(--content-max);
+      padding-left: 38px;
+      padding-bottom: 100px;
+    }
+
+    .cs-section {
+      padding-top: 72px;
+      padding-bottom: 100px;
+
+      font-size: 16px;
+      line-height: 2;
+      color: var(--text-accent);
+
+    
+    }
+
+
+    h2 {
+      font-family: var(--font-mono);
+      font-size: clamp(15px, 1.7vw, 24px);
+      font-weight: 500;
+      color: var(--text-h);
+      line-height: 1.3;
+      margin-bottom: 20px;
+    }
+
+
+
+    .section-label {
+      font-size: 13px;
+      margin-bottom: 10px;
+      letter-spacing: 0.01em;
+      line-height: 1.4;
+      color: var(--accent);
+    }
+
+    .cs-blockquote {
+      position: relative;
+      background: var(--white);
+      border-radius: 8px;
+      padding: 14px 18px 28px 22px;
+      margin: 90px 0 0 0;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      line-height: 1.7;
+      color: var(--text-muted);
+    }
+
+    .cs-blockquote::before {
+      content: '';
+      position: absolute;
+      bottom: 10px;
+      right: 14px;
+      width: 0;
+      height: 0;
+      border-left: 7px solid transparent;
+      border-right: 7px solid transparent;
+      border-top: 9px solid var(--blockquote-l);
+    }
+
+    .cs-blockquote::after {
+      content: '';
+      position: absolute;
+      left: 10px;
+      top: 12px;
+      bottom: 12px;
+      width: 2px;
+      background: var(--blockquote-l);
+      border-radius: 1px;
+    }
+
+    .tools-row {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 18px;
+      margin-top: -8px;
+    }
+
+    .tools-tag {
+      border: 1px solid var(--tag-border);
+      border-radius: 100px;
+      padding: 2px 11px;
+      font-size: 11.5px;
+      color: var(--text-h);
+    }
+
+    /* section images */
+    .media-img {
+      margin: 20px 0 28px;
+      border-radius: 10px;
+      overflow: hidden;
+      background: #f0f2fa;
+      line-height: 0;
+    }
+
+    .media-img img {
+      width: 100%;
+      display: block;
+    }
+
+    .media-img--narrow {
+      max-width: 380px;
+    }
+
+    /* ——— DARK HERO / PRODUCT DEMO ——— */
+    .module-frame {
+      padding: 4%;
+      background-color: white;
+      border-radius: 8px;
+      margin-bottom: 40%;
+    }
+
+    .product-demo {
+      background: var(--dark-bg);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: stretch;
+      min-height: 460px;
+    }
+
+    .product-demo-content {
+      position: relative;
+      z-index: 3;
+      padding: 72px 0 72px calc(var(--sidebar-l) + var(--sidebar-w) + 38px);
+      max-width: 640px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 0;
+      flex-shrink: 0;
+    }
+
+    .demo-eyebrow {
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #5B9BFF;
+      margin-bottom: 14px;
+      font-weight: 400;
+    }
+
+    h2.demo-heading {
+      font-family: var(--font-sans);
+      font-size: clamp(24px, 3.2vw, 46px);
+      font-weight: 300;
+      color: var(--white);
+      line-height: 1.2;
+      margin-bottom: 36px;
+      letter-spacing: -0.01em;
+    }
+
+    .demo-actions {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .btn-demo-primary {
+      background: #3B9BFF;
+      color: var(--white);
+      border: none;
+      border-radius: 100px;
+      padding: 12px 28px;
+      font-size: 14px;
+      font-family: var(--font-sans);
+      cursor: default;
+      font-weight: 400;
+    }
+
+    .btn-demo-outline {
+      background: transparent;
+      color: var(--white);
+      border: 1.5px solid rgba(255, 255, 255, 0.55);
+      border-radius: 100px;
+      padding: 11px 28px;
+      font-size: 14px;
+      font-family: var(--font-sans);
+      cursor: default;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .product-demo-media {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 100%;
+    }
+
+    .product-demo-media::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to right, var(--dark-bg) 0%, rgba(0, 21, 51, 0.5) 35%, transparent 70%);
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .product-demo-media img,
+    .product-demo-media video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: left center;
+      display: block;
+    }
+
+    /* ——— PERSONA TABS (below dashboard demo, full container width) ——— */
+    .persona-tabs {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      width: 100%;
+      margin-top: 8px;
+      margin-bottom: 32px;
+    }
+
+    .persona-tabs .persona-card {
+      border-radius: 10px;
+    }
+
+    /* ——— PERSONA CARDS (legacy, inside content column) ——— */
+    .persona-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin: 28px 0;
+    }
+
+    .persona-card {
+      border-radius: 0;
+      padding: 22px 20px;
+    }
+
+    .persona-cards .persona-card {
+      border-radius: 10px;
+    }
+
+    .persona-card--active {
+      background: #B8CCEA;
+    }
+
+    .persona-card--inactive {
+      background: #DCE6F4;
+    }
+
+    .persona-card--blue {
+      background: #D2E0F5;
+    }
+
+    .persona-card--mid {
+      background: #E0EAFA;
+    }
+
+    .persona-card--dark {
+      background: #C8D9F2;
+    }
+
+    .persona-type {
+      font-size: 9.5px;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: #3B68F5;
+      margin-bottom: 8px;
+      font-weight: 500;
+    }
+
+    .persona-card h3 {
+      font-family: var(--font-sans);
+      font-size: 14.5px;
+      font-weight: 600;
+      color: var(--text-h);
+      margin-bottom: 10px;
+      line-height: 1.3;
+    }
+
+    .persona-card p {
+      font-size: 12.5px !important;
+      line-height: 1.6 !important;
+      color: var(--text-body) !important;
+      margin-bottom: 0 !important;
+    }
+
+    /* ——— OUTCOME LINK ——— */
+    .link-next-case {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 14px;
+      margin-top: 10px;
+    }
+
+    .link-next-case:hover {
+      text-decoration: underline;
+    }
+
+    /* approach continuation after tab-demo */
+    .cs-section-cont {
+      padding-top: 40px;
+      padding-bottom: 0;
+    }
+
+    /* ——— DASHBOARD DEMO SECTION (wide, breaks content column) ——— */
+    .tab-demo-section {
+      padding-left: var(--content-l);
+      padding-right: 80px;
+      margin: 0 0 0;
+    }
+
+    .tab-demo {
+      position: relative;
+      width: 100%;
+      border-radius: 14px;
+      overflow: hidden;
+      background: linear-gradient(#02102B, #013D8F);
+      aspect-ratio: 1308 / 500;
+      margin: 20px 0 0;
+    }
+
+    .tab-demo-video {
+      position: absolute;
+      left: 25%;
+      right: 20%;
+      top: 5%;
+      bottom: 0;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+      height: 80%;
+      border-radius: 8px;
+    }
+
+    .tab-demo-overlay {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      display: block;
+      z-index: 2;
+    }
+
+    /* ——— LIGHTBOX ——— */
+    .lightbox-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.72);
+      z-index: 500;
+      align-items: center;
+      justify-content: center;
+    }
+    .lightbox-overlay.active {
+      display: flex;
+    }
+    .lightbox-img {
+      max-width: 80vw;
+      max-height: 80vh;
+      border-radius: 8px;
+      display: block;
+      object-fit: contain;
+    }
+    .lightbox-close {
+      position: fixed;
+      top: 24px;
+      right: 32px;
+      background: rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      color: #fff;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      padding: 6px 14px;
+      border-radius: 6px;
+      cursor: pointer;
+      letter-spacing: 0.03em;
+    }
+    .lightbox-close:hover {
+      background: rgba(255, 255, 255, 0.25);
+    }
+    .media-img img,
+    .hero-media img {
+      cursor: zoom-in;
+    }
+
+    /* ——— RESPONSIVE ——— */
+    @media (max-width: 900px) {
+      :root {
+        --sidebar-l: 0px;
+        --content-l: 0px;
+      }
+
+      body::before {
+        display: none;
+      }
+
+      .site-nav {
+        padding: 0 20px;
+      }
+
+      .hero {
+        padding-left: 24px;
+        padding-right: 24px;
+      }
+
+      .intro-kv {
+        padding-left: 24px;
+        padding-right: 24px;
+      }
+
+      .sections-wrap {
+        padding-left: 24px;
+        padding-right: 24px;
+      }
+
+      .sidebar {
+        display: none;
+      }
+
+      .sections-content {
+        padding-left: 0;
+      }
+
+      .product-demo-content {
+        padding-left: 28px;
+        padding-right: 28px;
+        max-width: 100%;
+      }
+
+      .product-demo-media {
+        width: 50%;
+        opacity: 0.4;
+      }
+
+      .persona-cards {
+        grid-template-columns: 1fr;
+      }
+
+      .tab-demo-section {
+        padding-left: 24px;
+        padding-right: 24px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ——— LIGHTBOX ——— -->
+  <div class="lightbox-overlay" id="lightbox">
+    <button class="lightbox-close" id="lightbox-close">&#x2715; close</button>
+    <img class="lightbox-img" id="lightbox-img" src="" alt="">
+  </div>
+
+  <!-- ——— STICKY NAV ——— -->
+  <nav class="site-nav" id="site-nav">
+    <a href="overview.html" class="nav-link">&#x2190; overview</a>
+    <span class="nav-title" id="nav-title">Product Page Redesign for a Cloud Computing Service</span>
+    <a href="bust-a-bustle.html" class="nav-link">next case study &#x2192;</a>
+  </nav>
+
+  <div class="mobile-disclaimer">Due to the nature of the images presented on this page, it is highly advised to view
+    this portfolio on a desktop screen. Thank you!</div>
+
+  <div class="page">
+
+    <!-- ——— HERO ——— -->
+    <section class="hero">
+      <p class="cs-label">Case Study</p>
+      <h1 class="page-title" id="page-title">Product Page Redesign for a Cloud Computing Service</h1>
+      <div class="tag-row">
+        <span class="tag">Product Design</span>
+        <span class="tag">Graphic Design</span>
+        <span class="tag">Animation</span>
+      </div>
+      <div class="tag-row">
+        <span class="tools-label">Tools used</span>
+        <span class="tag tag--tool">Figma</span>
+        <span class="tag tag--tool">Blender</span>
+        <span class="tag tag--tool">Claude</span>
+      </div>
+      <div class="hero-media">
+        <video autoplay muted loop playsinline>
+          <source src="/Users/pdollinger/Documents/Portfolio/UX/assets/3d-anim.mp4" type="video/mp4">
+        </video>
+      </div>
+    </section>
+
+    <!-- ——— INTRO KV ——— -->
+    <section class="intro-kv">
+      <div class="kv-item">
+        <span class="kv-key">Background</span>
+        <p class="kv-val">A leading European cloud provider needed a redesign of their core IaaS product page to better
+          communicate a complex offering to a diverse B2B audience.</p>
+      </div>
+      <div class="kv-item">
+        <span class="kv-key">Problem</span>
+        <p class="kv-val">The existing page was feature-oriented rather than customer-oriented — dense, difficult to
+          navigate, and failing to differentiate against major hyperscalers.</p>
+      </div>
+      <div class="kv-item">
+        <span class="kv-key">Approach</span>
+        <p class="kv-val">I redesigned the page around customer outcomes, introducing a benefit-first structure,
+          interactive tools, customer personas, and product previews to guide purchase decisions.</p>
+      </div>
+      <div class="kv-item">
+        <span class="kv-key">Outcome</span>
+        <p class="kv-val">A high-fidelity prototype with desktop and mobile, localisation, and annotated components
+          ready for developer handoff.</p>
+      </div>
+    </section>
+
+    <!-- ——— CONTENT + SIDEBAR ——— -->
+    <div class="sections-wrap sections-wrap--first">
+
+      <!-- sticky index -->
+      <aside class="sidebar">
+        <nav class="index-nav" id="index-nav">
+          <a href="#background" class="index-link" data-target="background">Background</a>
+          <a href="#problem" class="index-link" data-target="problem">Problem</a>
+          <a href="#audit" class="index-link" data-target="audit">Audit</a>
+          <a href="#workflow" class="index-link" data-target="workflow">Workflow</a>
+          <a href="#approach" class="index-link" data-target="approach">Approach</a>
+          <a href="#outcome" class="index-link" data-target="outcome">Outcome</a>
+        </nav>
+      </aside>
+
+      <div class="sections-content">
+
+        <!-- BACKGROUND -->
+        <section id="background" class="cs-section">
+          <p class="section-label">Background</p>
+          <h2>Starting point.</h2>
+          <p>A leading European cloud and hosting provider needed a full redesign of their core cloud infrastructure
+            product page to better communicate a complex IaaS offering to a diverse B2B audience — from developers to IT
+            decision-makers in mid-sized enterprises.</p>
+        </section>
+
+        <!-- PROBLEM -->
+        <section id="problem" class="cs-section">
+          <p class="section-label">Problem</p>
+          <h2>A page that talked past its users.</h2>
+          <p>The existing page was feature-oriented rather than customer-oriented: a lot of dense pricing tables, dense
+            text blocks, generic illustrations, and no clear narrative made it difficult for users to understand what
+            the product does, who it's for, and why it's worth choosing over major hyperscalers.</p>
+          <blockquote class="cs-blockquote">Exemplary modules and design elements prior to the redesign, which did not
+            support a benefit driven storytelling and which I targeted during the process for a better user experience.
+          </blockquote>
+          <div class="media-img">
+            <img src="/Users/pdollinger/Documents/Portfolio/UX/assets/pre-redesign.png"
+              alt="Old design: dense pricing table and generic feature card">
+          </div>
+        </section>
+
+        <!-- AUDIT -->
+        <section id="audit" class="cs-section">
+          <p class="section-label">Audit</p>
+          <h2>Finding what was already there.</h2>
+          <p>Before sketching a single screen, I mapped the existing product ecosystem: all data, features, and
+            interactive tools scattered across subpages, documentation, and support pages. A key finding was that the
+            product already had genuinely compelling resources — a live demo, an interactive pricing calculator, a
+            browser-based configuration interface — but most were buried behind indirect navigation or not linked from
+            the product page at all. Rather than creating from scratch, the design response was to surface these
+            existing assets directly in the page flow: embedding the pricing calculator with accessible entry points
+            based on persona profiles, and integrating the product demo as an early touchpoint so potential customers
+            could experience the product before ever signing up.</p>
+          <blockquote class="cs-blockquote">I mapped the page out as a flowchart and the relevant »hidden« ressources
+            relevant for the product in the larger webpage of the company. This mapping is condensed to the specific
+            resources I targeted to implement them into this product page.</blockquote>
+          <div class="media-img media-img--narrow">
+            <img src="/Users/pdollinger/Documents/Portfolio/UX/assets/mapping.png"
+              alt="Product page sitemap / resource flowchart">
+          </div>
+        </section>
+
+        <!-- WORKFLOW -->
+        <section id="workflow" class="cs-section">
+          <p class="section-label">Workflow</p>
+          <h2>Paper first, pixels second.</h2>
+          <div class="tools-row">
+            <span class="tools-tag tag--tool">Figma</span>
+            <span class="tools-tag tag--tool">Blender</span>
+          </div>
+          <p>The design process started analog: Sketching the information architecture and section logic on paper before
+            moving into Figma for low-fidelity wireframing. From there, the prototype was built up iteratively: the
+            stage 3D animation was created in Blender to achieve the depth and visual dynamism a flat illustration
+            couldn't deliver. Icons, feature graphics, and 2D micro-animations were then produced directly in Figma,
+            keeping the motion language consistent across the page and grounded in the existing design system.</p>
+          <blockquote class="cs-blockquote">The stage redesign replaces a static illustration with a 3D animation built
+            in Blender — giving the product a sense of scale and technical depth without added copy.</blockquote>
+        </section>
+
+      </div><!-- /sections-content -->
+    </div><!-- /sections-wrap -->
+
+    <!-- ——— PRODUCT DEMO (WORKFLOW MEDIA) ——— -->
+    <section class="product-demo">
+      <div class="product-demo-content">
+        <p class="demo-eyebrow">Compute Engine</p>
+        <h2 class="demo-heading">Ihre Infrastruktur. Ihre&nbsp;Regeln.<br>Kein Lock-in.</h2>
+        <div class="demo-actions">
+          <button class="btn-demo-primary">Jetzt registrieren</button>
+          <button class="btn-demo-outline">Live-Demo ausprobieren &#x2192;</button>
+        </div>
+      </div>
+      <div class="product-demo-media">
+        <video autoplay muted loop playsinline>
+          <source src="/Users/pdollinger/Documents/Portfolio/UX/assets/3d-anim.mp4" type="video/mp4">
+        </video>
+      </div>
+    </section>
+
+    <!-- ——— APPROACH (text + blockquote before demo) ——— -->
+    <div class="sections-wrap">
+      <aside class="sidebar">
+        <nav class="index-nav">
+          <a href="#background" class="index-link" data-target="background">Background</a>
+          <a href="#problem" class="index-link" data-target="problem">Problem</a>
+          <a href="#audit" class="index-link" data-target="audit">Audit</a>
+          <a href="#workflow" class="index-link" data-target="workflow">Workflow</a>
+          <a href="#approach" class="index-link" data-target="approach">Approach</a>
+          <a href="#outcome" class="index-link" data-target="outcome">Outcome</a>
+        </nav>
+      </aside>
+      <div class="sections-content">
+        <section id="approach" class="cs-section">
+          <p class="section-label">Approach</p>
+          <h2>Rebuilding around the customer.</h2>
+          <div class="tools-row">
+            <span class="tools-tag tag--tool">Figma</span>
+            <span class="tools-tag tag--tool">Claude</span>
+          </div>
+          <p>I started with a competitive research across five cloud providers, which I structured with the help of
+            Claude for a thorough comparison. Then followed a restructuring of information architecture: I redesigned
+            the page around customer outcomes — introducing a benefit-first hero, a bento-grid advantage section, an
+            inline price calculator with pre-configured examples, an interactive product preview, and a tab-based
+            server-type selector with real customer personas to guide purchase decisions. In order to keep the
+            implementation simple and in regards to the brief, I used the current design library of the company.</p>
+          <blockquote class="cs-blockquote">A preexisting tab module, redesigned around real customer personas. Users
+            select their workload type — Startup, Online Shop, or Mid-size Production — and the interface surfaces the
+            right server configuration without requiring technical knowledge upfront.</blockquote>
+        </section>
+      </div>
+    </div>
+
+    <!-- ——— DASHBOARD DEMO (wide, outside content column) ——— -->
+    <div class="tab-demo-section">
+      <div class="tab-demo">
+        <video class="tab-demo-video" autoplay muted loop playsinline>
+          <source src="/Users/pdollinger/Documents/Portfolio/UX/assets/devflow-dashboard-animated-v1.mp4"
+            type="video/mp4">
+        </video>
+        <img src="/Users/pdollinger/Documents/Portfolio/UX/assets/overlay-dashboard-v2.png" class="tab-demo-overlay"
+          alt="DevFlow dashboard: tab module with persona selector">
+      </div>
+      <div class="persona-tabs">
+        <div class="persona-card persona-card--active">
+          <p class="persona-type">vCPU</p>
+          <h3>Startup &amp; Entwicklung</h3>
+          <p>Sie entwickeln und testen neue Features: vCPU-Server wachsen flexibel mit Ihrem Projekt und werden nur
+            dann berechnet, wenn sie laufen.</p>
+        </div>
+        <div class="persona-card persona-card--inactive">
+          <p class="persona-type">vCPU + Dedicated Core</p>
+          <h3>Online-Shop &amp; Skalierung</h3>
+          <p>Ihr Shop läuft täglich auf vCPU-Servern — bei Traffic-Spitzen sichert ein Dedicated-Core-Server
+            Checkout und Datenbank zuverlässig ab.</p>
+        </div>
+        <div class="persona-card persona-card--inactive">
+          <p class="persona-type">Dedicated Core</p>
+          <h3>Mittelstand &amp; Produktion</h3>
+          <p>Für ERP, Kundendatenbank und geschäftskritische Systeme garantiert der Dedicated-Core-Server konstante
+            Leistung — ausschließlich für Sie.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ——— APPROACH (continued) + OUTCOME ——— -->
+    <div class="sections-wrap">
+      <aside class="sidebar">
+        <nav class="index-nav">
+          <a href="#background" class="index-link" data-target="background">Background</a>
+          <a href="#problem" class="index-link" data-target="problem">Problem</a>
+          <a href="#audit" class="index-link" data-target="audit">Audit</a>
+          <a href="#workflow" class="index-link" data-target="workflow">Workflow</a>
+          <a href="#approach" class="index-link" data-target="approach">Approach</a>
+          <a href="#outcome" class="index-link" data-target="outcome">Outcome</a>
+        </nav>
+      </aside>
+      <div class="sections-content">
+
+        <div class="cs-section-cont">
+          <blockquote class="cs-blockquote">Benefit-first visual language: icons and illustrations carry the content
+            load, replacing dense feature lists with scannable, customer-oriented messaging.</blockquote>
+
+          <!-- Benefit bento grid (graphic) -->
+          <div class="media-img module-frame">
+            <img src="/Users/pdollinger/Documents/Portfolio/UX/assets/bento-module.png"
+              alt="Benefit cards: security, control, and performance">
+          </div>
+
+          <blockquote class="cs-blockquote">The calculator surfaces earlier in the page and opens with persona-based
+            presets, removing the friction of a blank-slate configuration for first-time visitors.</blockquote>
+
+          <!-- Configurator (graphic) -->
+          <div class="media-img module-frame">
+            <img src="/Users/pdollinger/Documents/Portfolio/UX/assets/calculator.png" alt="Inline pricing configurator">
+          </div>
+        </div>
+
+        <!-- OUTCOME -->
+        <section id="outcome" class="cs-section">
+          <p class="section-label">Outcome</p>
+          <h2>From brief to handoff-ready.</h2>
+          <p>The brief asked for a product page that made the offering more tangible, more accessible to non-technical
+            buyers, and significantly less dense. The redesign answers each of those points directly: product
+            demonstrations appear earlier and more frequently, guided by interactive entry points rather than buried in
+            subpages. Text was reduced by roughly 80%, with illustrations, icons, and motion carrying the conceptual
+            weight instead. A benefit-first structure replaces the previous feature inventory, and animations add
+            engagement where static layouts previously lost attention. The result is a high-fidelity prototype — desktop
+            and mobile, localised, with annotated components ready for developer handoff — that positions the product
+            for an audience ranging from developers to first-time cloud buyers.</p>
+          <a href="testdrive-case-study-bustle.html" class="link-next-case">Read the next case study &#x2192;</a>
+        </section>
+
+      </div>
+    </div>
+
+  </div><!-- /page -->
+
+  <script>
+    // ——— LIGHTBOX ———
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const lightboxClose = document.getElementById('lightbox-close');
+
+    document.querySelectorAll('.media-img img, .hero-media img').forEach(img => {
+      img.addEventListener('click', () => {
+        lightboxImg.src = img.src;
+        lightboxImg.alt = img.alt;
+        lightbox.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+
+    function closeLightbox() {
+      lightbox.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    lightboxClose.addEventListener('click', e => { e.stopPropagation(); closeLightbox(); });
+    lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+
+    // ——— NAV TITLE EFFECT ———
+    const nav = document.getElementById('site-nav');
+    const navTitle = document.getElementById('nav-title');
+    const pageTitle = document.getElementById('page-title');
+    const NAV_H = 48;
+
+    function updateNavTitle() {
+      const bottom = pageTitle.getBoundingClientRect().bottom;
+      const past = bottom < NAV_H;
+      navTitle.classList.toggle('visible', past);
+      nav.classList.toggle('scrolled', past);
+    }
+
+    window.addEventListener('scroll', updateNavTitle, { passive: true });
+    updateNavTitle();
+
+    // ——— SIDEBAR SCROLLSPY ———
+    const sections = ['background', 'problem', 'audit', 'workflow', 'approach', 'outcome'];
+    const indexLinks = document.querySelectorAll('.index-link');
+
+    const setActive = (id) => {
+      indexLinks.forEach(a => {
+        a.classList.toggle('active', a.dataset.target === id);
+      });
+    };
+
+    const sectionObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          setActive(entry.target.id);
+        }
+      });
+    }, {
+      rootMargin: '-30% 0px -60% 0px',
+      threshold: 0
+    });
+
+    sections.forEach(id => {
+      const el = document.getElementById(id);
+      if (el) sectionObserver.observe(el);
+    });
+
+    // ——— SMOOTH SCROLL FOR INDEX LINKS ———
+    document.querySelectorAll('.index-link').forEach(link => {
+      link.addEventListener('click', e => {
+        e.preventDefault();
+        const target = document.getElementById(link.dataset.target);
+        if (target) {
+          const offset = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nav-h')) + 32;
+          const top = target.getBoundingClientRect().top + window.scrollY - offset;
+          window.scrollTo({ top, behavior: 'smooth' });
+        }
+      });
+    });
+  </script>
+
+</body>
+
+</html>
