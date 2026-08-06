@@ -48,79 +48,6 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    /* ——— PASSWORD GATE ——— */
-    .pw-gate {
-      position: fixed;
-      inset: 0;
-      background: linear-gradient(to bottom, #0c3dc2 0%, #c1f0ff 100%);
-      z-index: 9999;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .pw-box {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 12px;
-      width: 260px;
-    }
-
-    .pw-title {
-      font-family: var(--font-mono);
-      font-size: 18px;
-      font-weight: 500;
-      color: #fff;
-      margin-bottom: 4px;
-    }
-
-    .pw-label {
-      font-size: 13px;
-      color: rgba(255,255,255,0.7);
-      font-family: var(--font-sans);
-      margin: 0;
-    }
-
-    .pw-input {
-      width: 100%;
-      padding: 10px 14px;
-      border: 1px solid rgba(255,255,255,0.35);
-      border-radius: 8px;
-      font-size: 14px;
-      font-family: var(--font-sans);
-      background: rgba(255,255,255,0.12);
-      color: #fff;
-      outline: none;
-      text-align: center;
-      letter-spacing: 0.05em;
-    }
-
-    .pw-input::placeholder { color: rgba(255,255,255,0.45); }
-    .pw-input:focus { border-color: rgba(255,255,255,0.7); }
-
-    .pw-btn {
-      width: 100%;
-      background: rgba(255,255,255,0.2);
-      border: 1px solid rgba(255,255,255,0.4);
-      color: #fff;
-      border-radius: 8px;
-      padding: 10px;
-      font-size: 14px;
-      font-family: var(--font-sans);
-      cursor: pointer;
-      transition: background 0.2s;
-    }
-
-    .pw-btn:hover { background: rgba(255,255,255,0.3); }
-
-    .pw-error {
-      font-size: 12px;
-      color: #ffb3b3;
-      font-family: var(--font-sans);
-      min-height: 16px;
-      margin: 0;
-    }
 
     /* ——— PAGE LAYOUT ——— */
     .page {
@@ -292,17 +219,6 @@
 
 <body>
 
-  <!-- ——— PASSWORD GATE ——— -->
-  <div class="pw-gate" id="pw-gate">
-    <div class="pw-box">
-      <p class="pw-title">Portfolio</p>
-      <p class="pw-label">Enter password to view</p>
-      <input type="password" class="pw-input" id="pw-input" placeholder="••••••••" autocomplete="off">
-      <button class="pw-btn" id="pw-btn">Enter</button>
-      <p class="pw-error" id="pw-error"></p>
-    </div>
-  </div>
-
   <!-- ——— PAGE ——— -->
   <div class="page">
 
@@ -366,29 +282,6 @@
     </main>
   </div>
 
-  <script>
-    // ——— PASSWORD GATE ———
-    const PW = 'perfecthire';
-    const gate = document.getElementById('pw-gate');
-    const pwInput = document.getElementById('pw-input');
-    const pwBtn = document.getElementById('pw-btn');
-    const pwError = document.getElementById('pw-error');
-
-    if (sessionStorage.getItem('pw_ok') === '1') gate.style.display = 'none';
-
-    function checkPw() {
-      if (pwInput.value === PW) {
-        sessionStorage.setItem('pw_ok', '1');
-        gate.style.display = 'none';
-      } else {
-        pwError.textContent = 'Incorrect password.';
-        pwInput.value = '';
-        pwInput.focus();
-      }
-    }
-    pwBtn.addEventListener('click', checkPw);
-    pwInput.addEventListener('keydown', e => { if (e.key === 'Enter') checkPw(); });
-  </script>
 
 </body>
 </html>
