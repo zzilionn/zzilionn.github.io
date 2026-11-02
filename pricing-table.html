@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Domain Pricing Table Redesign for a Cloud Computing Service</title>
+  <style>
+    /* ——— RESET & BASE ——— */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg: #EDF0F9;
+      --bg-left: #EDF0F9;
+      --text-h: #090C18;
+      --text-body: #2C2F3B;
+      --text-muted: #6A6E7C;
+      --accent: #3B68F5;
+      --dark-bg: #001533;
+      --dark-bg2: #00214A;
+      --border: #D2D8EA;
+      --white: #ffffff;
+      --tag-border: #C4CBDC;
+      --blockquote-l: #C4C9DB;
+      --nav-h: 48px;
+      --font-mono: 'Overpass Mono', monospace;
+      --font-sans: 'Overpass', system-ui, -apple-system, sans-serif;
+      --sidebar-l: 97px;
+      --sidebar-w: 145px;
+      --content-l: 280px;
+      --content-max: 620px;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      background: var(--bg);
+      color: var(--text-body);
+      font-size: 16px;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      width: var(--content-l);
+      background: var(--bg-left);
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    @font-face {
+      font-family: 'Overpass';
+      src: url('/fonts/Overpass-Regular.ttf') format('truetype');
+      font-weight: 400;
+      font-style: normal;
+    }
+
+    @font-face {
+      font-family: 'Overpass Mono';
+      src: url('/fonts/OverpassMono-Regular.ttf') format('truetype');
+      font-weight: 500;
+      font-style: normal;
+    }
+
+    /* ——— MOBILE DISCLAIMER ——— */
+    .mobile-disclaimer {
+      display: none;
+    }
+
+    @media (max-width: 768px) {
+      .mobile-disclaimer {
+        display: block;
+        background: #FFF3E0;
+        color: #7A4A00;
+        font-family: var(--font-sans);
+        font-size: 15px;
+        line-height: 1.6;
+        padding: 20px 24px;
+        margin: calc(var(--nav-h) + 16px) 16px 0;
+        border-radius: 10px;
+        border: 1px solid #FFCC80;
+      }
+    }
+
+    /* ——— NAV ——— */
+    .site-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: var(--nav-h);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 40px;
+      background: rgba(227, 231, 243, 0.7);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      z-index: 200;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.3s;
+    }
+
+    .site-nav.scrolled {
+      border-bottom-color: var(--border);
+    }
+
+    .nav-link {
+      font-size: 13px;
+      color: var(--accent);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      white-space: nowrap;
+    }
+
+    .nav-link:hover {
+      text-decoration: underline;
+    }
+
+    .nav-title {
+      font-family: var(--font-sans);
+      font-size: 12px;
+      font-weight: 400;
+      color: var(--text-h);
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      max-width: 45%;
+      text-align: center;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      pointer-events: none;
+    }
+
+    .nav-title.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ——— PAGE WRAPPER ——— */
+    .page {
+      position: relative;
+      z-index: 1;
+      max-width: 1440px;
+      margin: 0 auto;
+    }
+
+    /* ——— HERO ——— */
+    .hero {
+      padding-top: calc(var(--nav-h) + 56px);
+      padding-bottom: 72px;
+      padding-left: var(--content-l);
+      padding-right: 80px;
+    }
+
+    .cs-label {
+      font-size: 12px;
+      color: var(--accent);
+      margin-bottom: 10px;
+      letter-spacing: 0.01em;
+    }
+
+    h1.page-title {
+      font-family: var(--font-mono);
+      font-size: clamp(18px, 2.4vw, 32px);
+      font-weight: 700;
+      color: var(--text-h);
+      line-height: 1.25;
+      margin-bottom: 22px;
+      max-width: var(--content-max);
+    }
+
+    .tag-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 10px;
+    }
+
+    .tag {
+      border: 1px solid var(--tag-border);
+      border-radius: 100px;
+      padding: 3px 12px;
+      font-size: 12px;
+      color: var(--text-h);
+      background: transparent;
+    }
+
+    .tag--tool {
+      border-color: rgba(59, 104, 245, 0.35);
+      background: rgba(59, 104, 245, 0.07);
+      color: var(--accent);
+    }
+
+    .tools-label {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .hero-media {
+      margin-top: 28px;
+      border-radius: 14px;
+      overflow: hidden;
+      background: var(--dark-bg);
+      max-width: var(--content-max);
+      line-height: 0;
+    }
+
+    .hero-media img,
+    .hero-media video {
+      width: 100%;
+      display: block;
+      border-radius: 14px;
+    }
+
+    /* ——— INTRO KV ——— */
+    .intro-kv {
+      padding-left: var(--content-l);
+      padding-right: 80px;
+      padding-top: 16px;
+      padding-bottom: 72px;
+    }
+
+    .kv-item {
+      display: grid;
+      grid-template-columns: 100px 1fr;
+      gap: 20px;
+      max-width: var(--content-max);
+      padding: 28px 0;
+    }
+
+    .kv-key {
+      font-size: 12.5px;
+      color: var(--accent);
+      padding-top: 3px;
+      line-height: 1.4;
+    }
+
+    .kv-val {
+      font-size: 15px;
+      line-height: 1.7;
+      color: var(--text-body);
+    }
+
+    /* ——— CONTENT + SIDEBAR ——— */
+    .sections-wrap {
+      display: flex;
+      align-items: flex-start;
+      padding-left: var(--sidebar-l);
+      padding-right: 80px;
+      gap: 0;
+    }
+
+    .sections-wrap--first {
+      border-top: 1px solid var(--border);
+    }
+
+    .sidebar {
+      width: var(--sidebar-w);
+      min-width: var(--sidebar-w);
+      position: sticky;
+      top: calc(var(--nav-h) + 40px);
+      padding-right: 20px;
+      padding-top: 72px;
+    }
+
+    .index-nav {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .index-link {
+      display: block;
+      font-size: 12.5px;
+      color: var(--text-muted);
+      text-decoration: none;
+      padding: 3px 0;
+      transition: color 0.2s;
+      line-height: 1.4;
+    }
+
+    .index-link:hover,
+    .index-link.active {
+      color: var(--accent);
+    }
+
+    /* ——— CONTENT SECTIONS ——— */
+    .sections-content {
+      max-width: var(--content-max);
+      padding-left: 38px;
+      padding-bottom: 100px;
+    }
+
+    .cs-section {
+      padding-top: 72px;
+      padding-bottom: 100px;
+      font-size: 16px;
+      line-height: 2;
+      color: var(--text-body);
+    }
+
+    h2 {
+      font-family: var(--font-mono);
+      font-size: clamp(15px, 1.7vw, 24px);
+      font-weight: 500;
+      color: var(--text-h);
+      line-height: 1.3;
+      margin-bottom: 20px;
+    }
+
+    .section-label {
+      font-size: 13px;
+      margin-bottom: 10px;
+      letter-spacing: 0.01em;
+      line-height: 1.4;
+      color: var(--accent);
+    }
+
+    /* ——— BLOCKQUOTE / CAPTION ——— */
+    .cs-blockquote {
+      position: relative;
+      background: var(--white);
+      border-radius: 8px;
+      padding: 14px 18px 28px 22px;
+      margin: 24px 0 0 0;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      line-height: 1.7;
+      color: var(--text-muted);
+    }
+
+    .cs-blockquote::after {
+      content: '';
+      position: absolute;
+      left: 10px;
+      top: 12px;
+      bottom: 12px;
+      width: 2px;
+      background: var(--blockquote-l);
+      border-radius: 1px;
+    }
+
+    /* ——— COMMENT TAGS ——— */
+    .comment-tag {
+      display: table;
+      margin: 0 0 10px;
+      padding: 3px 12px;
+      border-radius: 100px;
+      border: 1px solid;
+      font-family: var(--font-sans);
+      font-size: 11px;
+      font-weight: 500;
+      line-height: 1.4;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .comment-tag--old {
+      color: #8F6A00;
+      background: rgba(255, 205, 60, 0.2);
+      border-color: rgba(255, 200, 40, 0.65);
+      box-shadow: 0 2px 8px rgba(255, 205, 60, 0.35);
+    }
+
+    .comment-tag--new {
+      color: #0A8A1E;
+      background: rgba(0, 220, 150, 0.2);
+      border-color: rgba(0, 200, 90, 0.6);
+      box-shadow: 0 2px 8px rgba(0, 220, 150, 0.4);
+    }
+
+    .tools-row {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 18px;
+      margin-top: -8px;
+    }
+
+    .tools-tag {
+      border: 1px solid var(--tag-border);
+      border-radius: 100px;
+      padding: 2px 11px;
+      font-size: 11.5px;
+      color: var(--text-h);
+    }
+
+    /* ——— IMAGES ——— */
+    .media-img,
+    .media-img-portrait {
+      margin: 20px 0 28px;
+      border-radius: 10px;
+      overflow: hidden;
+      line-height: 0;
+    }
+
+    .media-img img {
+      width: 100%;
+      display: block;
+    }
+
+    .media-img-portrait {
+      width: fit-content;
+      max-width: 100%;
+      isolation: isolate;
+      transform: translateZ(0);
+    }
+
+    .media-img-portrait img,
+    .media-img-portrait video {
+      height: 60vh;
+      width: auto;
+      max-width: 100%;
+      display: block;
+      border-radius: 10px;
+    }
+
+    .media-img--narrow {
+      max-width: 380px;
+    }
+
+    .media-img img,
+    .hero-media img {
+      cursor: zoom-in;
+    }
+
+    .media-wrap {
+      position: relative;
+      margin: 20px 0 28px;
+      border-radius: 10px;
+      overflow: hidden;
+      line-height: 0;
+    }
+
+    .media-wrap img {
+      width: 100%;
+      display: block;
+      cursor: zoom-in;
+    }
+
+    /* ——— NEXT CASE LINK ——— */
+
+    .link-next-case {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 14px;
+      margin-top: 10px;
+    }
+
+    .link-next-case:hover {
+      text-decoration: underline;
+    }
+
+    /* ——— LIGHTBOX ——— */
+    .lightbox-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.72);
+      z-index: 500;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .lightbox-overlay.active {
+      display: flex;
+    }
+
+    .lightbox-img {
+      max-width: 80vw;
+      max-height: 80vh;
+      border-radius: 8px;
+      display: block;
+      object-fit: contain;
+    }
+
+    .lightbox-close {
+      position: fixed;
+      top: 24px;
+      right: 32px;
+      background: rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      color: #fff;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      padding: 6px 14px;
+      border-radius: 6px;
+      cursor: pointer;
+      letter-spacing: 0.03em;
+    }
+
+    .lightbox-close:hover {
+      background: rgba(255, 255, 255, 0.25);
+    }
+
+    /* ——— RESPONSIVE ——— */
+    @media (max-width: 900px) {
+      :root {
+        --sidebar-l: 0px;
+        --content-l: 0px;
+      }
+
+      body::before {
+        display: none;
+      }
+
+      .site-nav {
+        padding: 0 20px;
+      }
+
+      .hero,
+      .intro-kv {
+        padding-left: 24px;
+        padding-right: 24px;
+      }
+
+      .sections-wrap {
+        padding-left: 24px;
+        padding-right: 24px;
+      }
+
+      .sidebar {
+        display: none;
+      }
+
+      .sections-content {
+        padding-left: 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ——— LIGHTBOX ——— -->
+  <div class="lightbox-overlay" id="lightbox">
+    <button class="lightbox-close" id="lightbox-close">&#x2715; close</button>
+    <img class="lightbox-img" id="lightbox-img" src="" alt="">
+  </div>
+
+  <!-- ——— STICKY NAV ——— -->
+  <nav class="site-nav" id="site-nav">
+    <a href="overview.html" class="nav-link">&#x2190; overview</a>
+    <span class="nav-title" id="nav-title">Domain Pricing Table Redesign for a Cloud Computing Service</span>
+    <a href="bust-a-bustle.html" class="nav-link">next case study &#x2192;</a>
+  </nav>
+
+  <div class="page">
+
+    <!-- ——— HERO ——— -->
+    <section class="hero">
+      <p class="cs-label">Case Study</p>
+      <h1 class="page-title" id="page-title">Domain Pricing Table Redesign for a Cloud Computing Service</h1>
+      <div class="tag-row">
+        <span class="tag">Product Design</span>
+        <span class="tag">Information Architecture</span>
+        <span class="tag">Usability</span>
+      </div>
+      <div class="tag-row">
+        <span class="tools-label">Tools used</span>
+        <span class="tag tag--tool">Figma</span>
+      </div>
+      <div class="hero-media">
+        <img src="assets/table/title_image_tables.png" alt="Pricing table filter showcase">
+      </div>
+    </section>
+
+    <!-- ——— INTRO KV ——— -->
+    <section class="intro-kv">
+      <div class="kv-item">
+        <span class="kv-key">Background</span>
+        <p class="kv-val">A leading European cloud providers domain pricing page is a key conversion point — but user
+          complaints and weak usability signalled it wasn't doing its job.</p>
+      </div>
+      <div class="kv-item">
+        <span class="kv-key">Problem</span>
+        <p class="kv-val">Eight columns of jargon-heavy data with no mobile support made it nearly impossible to find
+          the one number that mattered: the first-year price.</p>
+      </div>
+      <div class="kv-item">
+        <span class="kv-key">Approach</span>
+        <p class="kv-val">Mobile-first redesign: stripped the table to three essential columns, moved repetitive data
+          out, and introduced search and filter to replace scrolling through hundreds of rows.</p>
+      </div>
+      <div class="kv-item">
+        <span class="kv-key">Outcome</span>
+        <p class="kv-val">A scannable, filterable pricing table ready for handoff — scoped in two tiers so the team
+          could ship search first and roll out filters incrementally.</p>
+      </div>
+    </section>
+
+    <!-- ——— CONTENT + SIDEBAR ——— -->
+    <div class="sections-wrap sections-wrap--first">
+
+      <aside class="sidebar">
+        <nav class="index-nav" id="index-nav">
+          <a href="#background" class="index-link" data-target="background">Background</a>
+          <a href="#problem" class="index-link" data-target="problem">Problem</a>
+          <a href="#audit" class="index-link" data-target="audit">Audit</a>
+          <a href="#workflow" class="index-link" data-target="workflow">Workflow</a>
+          <a href="#approach" class="index-link" data-target="approach">Approach</a>
+          <a href="#outcome" class="index-link" data-target="outcome">Outcome</a>
+        </nav>
+      </aside>
+
+      <div class="sections-content">
+
+        <!-- BACKGROUND -->
+        <section id="background" class="cs-section">
+          <p class="section-label">Background</p>
+          <h2>A table that does a lot of work.</h2>
+          <p>The domain pricing page sits at the intersection of multiple funnels — linked from the main domain
+            showroom, from CTAs across the site, and pulled in organically through search. It's one of those rare pages
+            that has to work for everyone: first-time buyers, existing customers checking renewal costs, and people who
+            landed there from search engines. The challenge is doing all of that without turning the page into a spreadsheet
+            that only a product manager could love.</p>
+
+          <div class="media-wrap">
+            <img src="assets/table/original-table.png"
+              alt="Original design prior to redesign: dense pricing table with eight columns and no clear hierarchy.">
+          </div>
+          <p class="cs-blockquote"><span class="comment-tag comment-tag--old">Old design</span>The original table: eight
+            columns, hard-coded in the CMS, assembled without a UX review. Every column competed for equal attention —
+            including ones most users would never need.</p>
+        </section>
+
+        <!-- PROBLEM -->
+        <section id="problem" class="cs-section">
+          <p class="section-label">Problem</p>
+          <h2>Too much to read, too little to understand.</h2>
+          <p>The table had been built by a product manager and hard-coded in the CMS — and it showed. Eight columns
+            included domain bundles, ICANN fees, and restore fees, most of which required clicking through tooltips to
+            understand. The first-year price — the one number a buyer actually needs — was buried in the same visual
+            weight as renewal and transfer costs. On mobile, things broke entirely: no way to filter, no search, just a
+            horizontal scroll through hundreds of rows. Customer complaints called it out specifically: users didn't
+            know what they'd pay in year one.</p>
+
+          <div class="media-wrap">
+            <img src="assets/table/table-old-scroll.png"
+              alt="Original mobile design: an extremely long, unfiltered scroll through an overloaded pricing table with no search or sorting.">
+          </div>
+          <p class="cs-blockquote"><span class="comment-tag comment-tag--old">Old design</span>On mobile, the table
+            became a wall of data. No search, no filter, no way to find a specific TLD without scrolling through the
+            entire list alphabetically.</p>
+        </section>
+
+        <!-- AUDIT -->
+        <section id="audit" class="cs-section">
+          <p class="section-label">Audit</p>
+          <h2>What's here, what's wrong, what has to go.</h2>
+          <p>Before touching the layout, I worked through three lenses: the companies design system (to understand what
+            the component library could support), the existing table's data model (to decide what to cut, consolidate,
+            or relocate), and stakeholder notes from internal discussions that had already surfaced the core pain
+            points.</p>
+          <p>The findings were clear. The ICANN fee and restore fee didn't belong as primary columns — they're edge-case
+            information that pulls focus from the buying decision. Domain bundles were dynamic offers the table couldn't
+            reliably maintain. The header colour was out of spec. And the "show all" behaviour, which dumped the full
+            list in alphabetical order, punished users who just wanted to find a specific TLD. The table was structured
+            around the product catalogue, not around how someone actually shops for a domain.</p>
+        </section>
+
+        <!-- WORKFLOW -->
+        <section id="workflow" class="cs-section">
+          <p class="section-label">Workflow</p>
+          <h2>Column by column, decision by decision.</h2>
+          <div class="tools-row">
+            <span class="tools-tag tag--tool">Figma</span>
+          </div>
+          <p>The process started with a column audit: mapping each column to an actual user need and deciding what
+            stays, what moves, and what gets cut entirely. From there, I moved into mobile-first wireframing — building
+            the TLD-as-header pattern that makes rows scannable on small screens, then scaling up to desktop. The filter
+            and search system was scoped in two tiers: an MVP with search only, and a full version with the filter
+            overlay, so the team could ship incrementally. Each interaction decision was documented as an annotated
+            comment directly in the Figma file, following the team's existing handoff convention.</p>
+        </section>
+
+        <!-- APPROACH -->
+        <section id="approach" class="cs-section">
+          <p class="section-label">Approach</p>
+          <h2>Mobile first, features earned.</h2>
+          <p>The core move was to strip the table down before building back up. Three columns only: registration,
+            renewal, transfer. The ICANN fee and restore fee are being relocated to a separate secondary section further
+            down the page. Repeating data that cluttered every row without adding value got pulled out entirely.</p>
+          <p>On mobile, the TLD extension becomes the row header rather than a cell in the first column, which makes the
+            list dramatically easier to scan and sort. Instead of paginating the full list, the table shows the top
+            results with a "show all" nudge — framing it so users are guided toward the filter rather than expected to
+            scroll through hundreds of rows. Search lets anyone find a specific TLD in seconds. The filter overlay
+            covers sorting, offer type and pricing columns shown — designed as a bottom
+            sheet with a clear Reset affordance, keeping the main table uncluttered. The Buy button was spec'd
+            as a configurable anchor or page link to keep the handoff flexible.</p>
+
+          <div class="media-wrap">
+            <img src="assets/table/mobile-filter_expand.png"
+              alt="Filter overlay expanded on mobile: sorting options, offer type toggles, pricing column visibility, and domain type filters — with Return and Reset controls at the top.">
+          </div>
+          <p class="cs-blockquote"><span class="comment-tag comment-tag--new">Redesign</span>The filter sheet on mobile.
+            Sorting, offer type, visible columns, and domain type — all accessible without leaving the table view.
+            Return and Reset are always in reach.</p>
+
+          <div class="media-img-portrait" style="margin-top: 20vh;">
+            <video src="assets/table/UI-animation-filters.mov" autoplay loop muted playsinline></video>
+          </div>
+          <p class="cs-blockquote"><span class="comment-tag comment-tag--new">Redesign</span>The filter function in
+            action.</p>
+
+        </section>
+
+        <!-- OUTCOME -->
+        <section id="outcome" class="cs-section">
+          <p class="section-label">Outcome</p>
+          <h2>Less table, more decision.</h2>
+          <p>The redesign cuts the table from eight columns to three, moves edge-case fees where they belong, and gives
+            users real tools to navigate a long list — search, filter, and a nudge toward filtering rather than
+            scrolling. The mobile experience goes from broken to purposeful. The two-tier scope means search can ship
+            fast while filters follow in the next sprint.</p>
+
+          <div class="media-wrap">
+            <img src="assets/table/desktop-table-new.png"
+              alt="Redesigned desktop pricing table: three columns, clean header, inline filter dropdowns, and a search bar — replacing the previous eight-column layout.">
+          </div>
+          <p class="cs-blockquote"><span class="comment-tag comment-tag--new">Redesign</span>The redesigned desktop
+            view. Three columns, inline filters, a search bar — and a "show more" button that nudges users toward
+            filtering rather than scrolling to the bottom.</p>
+
+          <a href="redesign-compute.html" class="link-next-case">Read the next case study &#x2192;</a>
+        </section>
+
+      </div><!-- /sections-content -->
+    </div><!-- /sections-wrap -->
+
+  </div><!-- /page -->
+
+  <script>
+    // ——— LIGHTBOX ———
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const lightboxClose = document.getElementById('lightbox-close');
+
+    document.querySelectorAll('.media-wrap img, .media-img img, .hero-media img').forEach(img => {
+      img.addEventListener('click', () => {
+        lightboxImg.src = img.src;
+        lightboxImg.alt = img.alt;
+        lightbox.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+
+    function closeLightbox() {
+      lightbox.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    lightboxClose.addEventListener('click', e => { e.stopPropagation(); closeLightbox(); });
+    lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+
+    // ——— NAV TITLE EFFECT ———
+    const nav = document.getElementById('site-nav');
+    const navTitle = document.getElementById('nav-title');
+    const pageTitle = document.getElementById('page-title');
+    const NAV_H = 48;
+
+    function updateNavTitle() {
+      const bottom = pageTitle.getBoundingClientRect().bottom;
+      navTitle.classList.toggle('visible', bottom < NAV_H);
+      nav.classList.toggle('scrolled', bottom < NAV_H);
+    }
+    window.addEventListener('scroll', updateNavTitle, { passive: true });
+    updateNavTitle();
+
+    // ——— SIDEBAR SCROLLSPY ———
+    const sections = ['background', 'problem', 'audit', 'workflow', 'approach', 'outcome'];
+    const indexLinks = document.querySelectorAll('.index-link');
+
+    const setActive = (id) => {
+      indexLinks.forEach(a => a.classList.toggle('active', a.dataset.target === id));
+    };
+
+    const sectionObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => { if (entry.isIntersecting) setActive(entry.target.id); });
+    }, { rootMargin: '-30% 0px -60% 0px', threshold: 0 });
+
+    sections.forEach(id => {
+      const el = document.getElementById(id);
+      if (el) sectionObserver.observe(el);
+    });
+
+    // ——— SMOOTH SCROLL ———
+    document.querySelectorAll('.index-link').forEach(link => {
+      link.addEventListener('click', e => {
+        e.preventDefault();
+        const target = document.getElementById(link.dataset.target);
+        if (target) {
+          const offset = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nav-h')) + 32;
+          window.scrollTo({ top: target.getBoundingClientRect().top + window.scrollY - offset, behavior: 'smooth' });
+        }
+      });
+    });
+  </script>
+
+</body>
+
+</html>

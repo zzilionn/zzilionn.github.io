@@ -200,6 +200,36 @@
       margin-bottom: 10px;
     }
 
+
+    /* ——— COMMENT TAGS ——— */
+    .comment-tag {
+      display: table;
+      margin: 0 0 10px;
+      padding: 3px 12px;
+      border-radius: 100px;
+      border: 1px solid;
+      font-family: var(--font-sans);
+      font-size: 11px;
+      font-weight: 500;
+      line-height: 1.4;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .comment-tag--old {
+      color: #8F6A00;
+      background: rgba(255, 205, 60, 0.2);
+      border-color: rgba(255, 200, 40, 0.65);
+      box-shadow: 0 2px 8px rgba(255, 205, 60, 0.35);
+    }
+
+    .comment-tag--new {
+      color: #0A8A1E;
+      background: rgba(0, 220, 150, 0.2);
+      border-color: rgba(0, 200, 90, 0.6);
+      box-shadow: 0 2px 8px rgba(0, 220, 150, 0.4);
+    }
+
     .tag {
       border: 1px solid var(--tag-border);
       border-radius: 100px;
@@ -862,7 +892,7 @@
           <p>The existing page was feature-oriented rather than customer-oriented: a lot of dense pricing tables, dense
             text blocks, generic illustrations, and no clear narrative made it difficult for users to understand what
             the product does, who it's for, and why it's worth choosing over major hyperscalers.</p>
-          <blockquote class="cs-blockquote">Exemplary modules and design elements prior to the redesign, which did not
+          <blockquote class="cs-blockquote"><span class="comment-tag comment-tag--old">Old design</span>Exemplary modules and design elements prior to the redesign, which did not
             support a benefit driven storytelling and which I targeted during the process for a better user experience.
           </blockquote>
           <div class="media-img">
@@ -905,7 +935,7 @@
             stage 3D animation was created in Blender to achieve the depth and visual dynamism a flat illustration
             couldn't deliver. Icons, feature graphics, and 2D micro-animations were then produced directly in Figma,
             keeping the motion language consistent across the page and grounded in the existing design system.</p>
-          <blockquote class="cs-blockquote">The stage redesign replaces a static illustration with a 3D animation built
+          <blockquote class="cs-blockquote"><span class="comment-tag comment-tag--new">Redesign</span>The stage redesign replaces a static illustration with a 3D animation built
             in Blender — giving the product a sense of scale and technical depth without added copy.</blockquote>
         </section>
 
@@ -955,7 +985,7 @@
             inline price calculator with pre-configured examples, an interactive product preview, and a tab-based
             server-type selector with real customer personas to guide purchase decisions. In order to keep the
             implementation simple and in regards to the brief, I used the current design library of the company.</p>
-          <blockquote class="cs-blockquote">A preexisting tab module, redesigned around real customer personas. Users
+          <blockquote class="cs-blockquote"><span class="comment-tag comment-tag--new">Redesign</span>A preexisting tab module, redesigned around real customer personas. Users
             select their workload type — Startup, Online Shop, or Mid-size Production — and the interface surfaces the
             right server configuration without requiring technical knowledge upfront.</blockquote>
         </section>
@@ -1009,7 +1039,7 @@
       <div class="sections-content">
 
         <div class="cs-section-cont">
-          <blockquote class="cs-blockquote">Benefit-first visual language: icons and illustrations carry the content
+          <blockquote class="cs-blockquote"><span class="comment-tag comment-tag--new">Redesign</span>Benefit-first visual language: icons and illustrations carry the content
             load, replacing dense feature lists with scannable, customer-oriented messaging.</blockquote>
 
           <!-- Benefit bento grid (graphic) -->
@@ -1018,7 +1048,7 @@
               alt="Benefit cards: security, control, and performance">
           </div>
 
-          <blockquote class="cs-blockquote">The calculator surfaces earlier in the page and opens with persona-based
+          <blockquote class="cs-blockquote"><span class="comment-tag comment-tag--new">Redesign</span>The calculator surfaces earlier in the page and opens with persona-based
             presets, removing the friction of a blank-slate configuration for first-time visitors.</blockquote>
 
           <!-- Configurator (graphic) -->
